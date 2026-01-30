@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxy Master Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Шапка -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>🛡️ Proxy Master Dashboard</h1>
+        <p class="subtitle">Мониторинг использования прокси</p>
+      </div>
+      <div class="header-right">
+        <div class="live-indicator">
+          <span class="dot"></span>
+          <span>LIVE</span>
+        </div>
+        <div id="lastUpdate" class="last-update"></div>
+      </div>
+    </header>
+
+    <!-- Основные метрики -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon">👥</div>
+        <div class="metric-content">
+          <div class="metric-value" id="totalUsers">0</div>
+          <div class="metric-label">Всего пользователей</div>
+        </div>
+      </div>
+      
+      <div class="metric-card">
+        <div class="metric-icon">⚡</div>
+        <div class="metric-content">
+          <div class="metric-value" id="activeUsers">0</div>
+          <div class="metric-label">Активных сейчас</div>
+        </div>
+      </div>
+      
+      <div class="metric-card">
+        <div class="metric-icon">📊</div>
+        <div class="metric-content">
+          <div class="metric-value" id="totalRequests">0</div>
+          <div class="metric-label">Всего запросов</div>
+        </div>
+      </div>
+      
+      <div class="metric-card">
+        <div class="metric-icon">⚠️</div>
+        <div class="metric-content">
+          <div class="metric-value" id="totalErrors">0</div>
+          <div class="metric-label">Ошибок</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Графики -->
+    <div class="charts-section">
+      <div class="chart-container">
+        <h3>📈 Активность по часам</h3>
+        <canvas id="activityChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>🌐 Популярные прокси</h3>
+        <canvas id="proxyChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Таблицы -->
+    <div class="tables-section">
+      <div class="table-container">
+        <h3>🔝 Топ доменов</h3>
+        <div class="table-wrapper">
+          <table id="domainsTable">
+            <thead>
+              <tr>
+                <th>Домен</th>
+                <th>Запросов</th>
+                <th>Пользователей</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="table-container">
+        <h3>👤 Активные пользователи</h3>
+        <div class="table-wrapper">
+          <table id="usersTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Прокси</th>
+                <th>Доменов</th>
+                <th>Последняя активность</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Последние события -->
+    <div class="events-section">
+      <h3>📝 Последние события</h3>
+      <div class="events-list" id="eventsList">
+        <!-- События будут добавляться здесь -->
+      </div>
+    </div>
+
+    <!-- Детальная аналитика -->
+    <div class="detailed-section">
+      <h3>🔍 Детальная аналитика</h3>
+      <div class="filters">
+        <select id="timeFilter">
+          <option value="1">Последний час</option>
+          <option value="24" selected>Последние 24 часа</option>
+          <option value="168">Последняя неделя</option>
+          <option value="720">Последний месяц</option>
+        </select>
+        <input type="text" id="searchUser" placeholder="Поиск по ID пользователя...">
+        <button id="exportBtn" class="export-btn">📥 Экспорт данных</button>
+      </div>
+      <div class="detailed-stats" id="detailedStats">
+        <!-- Детальная статистика -->
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
